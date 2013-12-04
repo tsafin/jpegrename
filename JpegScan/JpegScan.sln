@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "jpeglib", "..\jpeg-6b\jpeglib.vcxproj", "{9F2CCF28-F6FC-43AC-94BC-2FE41928CE4E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JpegScan", "JpegScan\JpegScan.vcxproj", "{CD501D07-4DA3-4A1D-883B-F6E4C4165A9C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9F2CCF28-F6FC-43AC-94BC-2FE41928CE4E} = {9F2CCF28-F6FC-43AC-94BC-2FE41928CE4E}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9F2CCF28-F6FC-43AC-94BC-2FE41928CE4E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9F2CCF28-F6FC-43AC-94BC-2FE41928CE4E}.Debug|Win32.Build.0 = Debug|Win32
+		{9F2CCF28-F6FC-43AC-94BC-2FE41928CE4E}.Debug|Win32.Deploy.0 = Debug|Win32
+		{9F2CCF28-F6FC-43AC-94BC-2FE41928CE4E}.Release|Win32.ActiveCfg = Release|Win32
+		{9F2CCF28-F6FC-43AC-94BC-2FE41928CE4E}.Release|Win32.Build.0 = Release|Win32
+		{9F2CCF28-F6FC-43AC-94BC-2FE41928CE4E}.Release|Win32.Deploy.0 = Release|Win32
+		{CD501D07-4DA3-4A1D-883B-F6E4C4165A9C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CD501D07-4DA3-4A1D-883B-F6E4C4165A9C}.Debug|Win32.Build.0 = Debug|Win32
+		{CD501D07-4DA3-4A1D-883B-F6E4C4165A9C}.Debug|Win32.Deploy.0 = Debug|Win32
+		{CD501D07-4DA3-4A1D-883B-F6E4C4165A9C}.Release|Win32.ActiveCfg = Release|Win32
+		{CD501D07-4DA3-4A1D-883B-F6E4C4165A9C}.Release|Win32.Build.0 = Release|Win32
+		{CD501D07-4DA3-4A1D-883B-F6E4C4165A9C}.Release|Win32.Deploy.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
