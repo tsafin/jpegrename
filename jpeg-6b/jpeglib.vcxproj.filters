@@ -15,19 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ansi2knr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="cdjpeg.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cjpeg.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ckconfig.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="djpeg.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="example.c">

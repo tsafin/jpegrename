@@ -77,12 +77,11 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ansi2knr.c" />
     <ClCompile Include="cdjpeg.c" />
-    <ClCompile Include="cjpeg.c" />
-    <ClCompile Include="ckconfig.c" />
-    <ClCompile Include="djpeg.c" />
-    <ClCompile Include="example.c" />
+    <ClCompile Include="example.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="jcapimin.c" />
     <ClCompile Include="jcapistd.c" />
     <ClCompile Include="jccoefct.c" />
@@ -127,7 +126,10 @@
     <ClCompile Include="jmemmgr.c" />
     <ClCompile Include="jmemname.c" />
     <ClCompile Include="jmemnobs.c" />
-    <ClCompile Include="jpegtran.c" />
+    <ClCompile Include="jpegtran.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="jquant1.c" />
     <ClCompile Include="jquant2.c" />
     <ClCompile Include="jutils.c" />
