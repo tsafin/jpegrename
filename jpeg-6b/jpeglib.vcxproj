@@ -124,7 +124,10 @@
     <ClCompile Include="jidctint.c" />
     <ClCompile Include="jidctred.c" />
     <ClCompile Include="jmemmgr.c" />
-    <ClCompile Include="jmemname.c" />
+    <ClCompile Include="jmemname.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="jmemnobs.c" />
     <ClCompile Include="jpegtran.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -136,7 +139,10 @@
     <ClCompile Include="rdbmp.c" />
     <ClCompile Include="rdcolmap.c" />
     <ClCompile Include="rdgif.c" />
-    <ClCompile Include="rdjpgcom.c" />
+    <ClCompile Include="rdjpgcom.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="rdppm.c" />
     <ClCompile Include="rdrle.c" />
     <ClCompile Include="rdswitch.c" />
@@ -144,7 +150,10 @@
     <ClCompile Include="transupp.c" />
     <ClCompile Include="wrbmp.c" />
     <ClCompile Include="wrgif.c" />
-    <ClCompile Include="wrjpgcom.c" />
+    <ClCompile Include="wrjpgcom.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="wrppm.c" />
     <ClCompile Include="wrrle.c" />
     <ClCompile Include="wrtarga.c" />
