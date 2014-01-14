@@ -23,6 +23,7 @@
 #include <libexif/exif-entry.h>
 #include <libexif/exif-ifd.h>
 #include <libexif/exif-utils.h>
+#include <libexif/exif-mem.h>
 #include <libexif/i18n.h>
 
 #include <ctype.h>
@@ -1374,23 +1375,23 @@ exif_entry_get_value (ExifEntry *e, char *val, unsigned int maxlen)
 	case EXIF_TAG_XP_AUTHOR:
 	case EXIF_TAG_XP_KEYWORDS:
 	case EXIF_TAG_XP_SUBJECT:
-	{
 		/* Sanity check the size to prevent overflow */
 		if (e->size+sizeof(unsigned short) < e->size) break;
 
-		/* The tag may not be U+0000-terminated , so make a local
-		   U+0000-terminated copy before converting it */
-		unsigned short *utf16 = exif_mem_alloc (e->priv->mem, e->size+sizeof(unsigned short));
-		if (!utf16) break;
-		memcpy(utf16, e->data, e->size);
-		utf16[e->size/sizeof(unsigned short)] = 0;
+		{
+			/* The tag may not be U+0000-terminated , so make a local
+			   U+0000-terminated copy before converting it */
+			unsigned short *utf16 = exif_mem_alloc (e->priv->mem, e->size+sizeof(unsigned short));
+			if (!utf16) break;
+			memcpy(utf16, e->data, e->size);
+			utf16[e->size/sizeof(unsigned short)] = 0;
 
-		/* Warning! The texts are converted from UTF16 to UTF8 */
-		/* FIXME: use iconv to convert into the locale encoding */
-		exif_convert_utf16_to_utf8(val, utf16, maxlen);
-		exif_mem_free(e->priv->mem, utf16);
-		break;
-	}
+			/* Warning! The texts are converted from UTF16 to UTF8 */
+			/* FIXME: use iconv to convert into the locale encoding */
+			exif_convert_utf16_to_utf8(val, utf16, maxlen);
+			exif_mem_free(e->priv->mem, utf16);
+			break;
+		}
 
 	default:
 		/* Use a generic value formatting */

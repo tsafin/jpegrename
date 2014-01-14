@@ -38,7 +38,7 @@
 #  define ngettext(String1,String2,Count) (Count==1?String1:String2)
 #  define dgettext(Domain,Message) (Message)
 #  define dcgettext(Domain,Message,Type) (Message)
-#ifdef __WATCOMC__
+#if defined(__WATCOMC__) || defined(_MSC_VER)
 #    define bind_textdomain_codeset(Domain,Codeset)
 #    define bindtextdomain(Domain,Directory)
 #else
