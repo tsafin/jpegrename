@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{1758E675-DD0F-4CD6-A948-7BBFC236BFCD}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="canon\exif-mnote-data-canon.c" />
+    <ClCompile Include="canon\mnote-canon-entry.c" />
+    <ClCompile Include="canon\mnote-canon-tag.c" />
+    <ClCompile Include="exif-byte-order.c" />
+    <ClCompile Include="exif-content.c" />
+    <ClCompile Include="exif-data.c" />
+    <ClCompile Include="exif-entry.c" />
+    <ClCompile Include="exif-format.c" />
+    <ClCompile Include="exif-ifd.c" />
+    <ClCompile Include="exif-loader.c" />
+    <ClCompile Include="exif-log.c" />
+    <ClCompile Include="exif-mem.c" />
+    <ClCompile Include="exif-mnote-data.c" />
+    <ClCompile Include="exif-tag.c" />
+    <ClCompile Include="exif-utils.c" />
+    <ClCompile Include="fuji\exif-mnote-data-fuji.c" />
+    <ClCompile Include="fuji\mnote-fuji-entry.c" />
+    <ClCompile Include="fuji\mnote-fuji-tag.c" />
+    <ClCompile Include="olympus\exif-mnote-data-olympus.c" />
+    <ClCompile Include="olympus\mnote-olympus-entry.c" />
+    <ClCompile Include="olympus\mnote-olympus-tag.c" />
+    <ClCompile Include="pentax\exif-mnote-data-pentax.c" />
+    <ClCompile Include="pentax\mnote-pentax-entry.c" />
+    <ClCompile Include="pentax\mnote-pentax-tag.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="canon\exif-mnote-data-canon.h" />
+    <ClInclude Include="canon\mnote-canon-entry.h" />
+    <ClInclude Include="canon\mnote-canon-tag.h" />
+    <ClInclude Include="exif-byte-order.h" />
+    <ClInclude Include="exif-content.h" />
+    <ClInclude Include="exif-data-type.h" />
+    <ClInclude Include="exif-data.h" />
+    <ClInclude Include="exif-entry.h" />
+    <ClInclude Include="exif-format.h" />
+    <ClInclude Include="exif-ifd.h" />
+    <ClInclude Include="exif-loader.h" />
+    <ClInclude Include="exif-log.h" />
+    <ClInclude Include="exif-mem.h" />
+    <ClInclude Include="exif-mnote-data-priv.h" />
+    <ClInclude Include="exif-mnote-data.h" />
+    <ClInclude Include="exif-system.h" />
+    <ClInclude Include="exif-tag.h" />
+    <ClInclude Include="exif-utils.h" />
+    <ClInclude Include="exif.h" />
+    <ClInclude Include="fuji\exif-mnote-data-fuji.h" />
+    <ClInclude Include="fuji\mnote-fuji-entry.h" />
+    <ClInclude Include="fuji\mnote-fuji-tag.h" />
+    <ClInclude Include="i18n.h" />
+    <ClInclude Include="olympus\exif-mnote-data-olympus.h" />
+    <ClInclude Include="olympus\mnote-olympus-entry.h" />
+    <ClInclude Include="olympus\mnote-olympus-tag.h" />
+    <ClInclude Include="pentax\exif-mnote-data-pentax.h" />
+    <ClInclude Include="pentax\mnote-pentax-entry.h" />
+    <ClInclude Include="pentax\mnote-pentax-tag.h" />
+    <ClInclude Include="_stdint.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

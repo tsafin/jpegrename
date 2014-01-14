@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="exif-byte-order.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exif-content.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exif-data.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exif-entry.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exif-format.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exif-ifd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exif-loader.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exif-log.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exif-mem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exif-mnote-data.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exif-tag.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exif-utils.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="canon\exif-mnote-data-canon.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="canon\mnote-canon-entry.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="canon\mnote-canon-tag.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fuji\exif-mnote-data-fuji.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fuji\mnote-fuji-entry.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fuji\mnote-fuji-tag.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="olympus\exif-mnote-data-olympus.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="olympus\mnote-olympus-entry.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="olympus\mnote-olympus-tag.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pentax\exif-mnote-data-pentax.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pentax\mnote-pentax-entry.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pentax\mnote-pentax-tag.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="exif-byte-order.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exif-content.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exif-data-type.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exif-data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exif-entry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exif-format.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exif-ifd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exif-loader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exif-log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exif-mem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exif-mnote-data-priv.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exif-mnote-data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exif-system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exif-tag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exif-utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exif.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="i18n.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_stdint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="canon\exif-mnote-data-canon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="canon\mnote-canon-entry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="canon\mnote-canon-tag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fuji\exif-mnote-data-fuji.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fuji\mnote-fuji-entry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fuji\mnote-fuji-tag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="olympus\exif-mnote-data-olympus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="olympus\mnote-olympus-entry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="olympus\mnote-olympus-tag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pentax\exif-mnote-data-pentax.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pentax\mnote-pentax-entry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pentax\mnote-pentax-tag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
