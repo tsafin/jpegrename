@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "jpeglib", "..\jpeg-6b\jpeglib.vcxproj", "{9F2CCF28-F6FC-43AC-94BC-2FE41928CE4E}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JpegScan", "JpegScan\JpegScan.vcxproj", "{CD501D07-4DA3-4A1D-883B-F6E4C4165A9C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9F2CCF28-F6FC-43AC-94BC-2FE41928CE4E} = {9F2CCF28-F6FC-43AC-94BC-2FE41928CE4E}
+		{1758E675-DD0F-4CD6-A948-7BBFC236BFCD} = {1758E675-DD0F-4CD6-A948-7BBFC236BFCD}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libexif", "..\libexif-0.6.21\libexif.vcxproj", "{1758E675-DD0F-4CD6-A948-7BBFC236BFCD}"
 EndProject
