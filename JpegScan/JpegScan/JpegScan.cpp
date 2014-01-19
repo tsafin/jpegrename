@@ -68,7 +68,7 @@ static void show_mnote_tag(ExifData *d, unsigned tag)
 int main(int argc, char **argv)
 {
     ExifData *ed;
-    ExifEntry *entry;
+    //ExifEntry *entry;
 
     if (argc < 2) {
         printf("Usage: %s image.jpg\n", argv[0]);
