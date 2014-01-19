@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <libexif/exif-data.h>
+#include "getopt.h"
 
 /* Remove spaces on the right of the string */
 static void trim_spaces(char *buf)
@@ -65,6 +66,10 @@ static void show_mnote_tag(ExifData *d, unsigned tag)
     }
 }
 
+static const char * g_opts = "h?f:d";
+static char * fileName;
+static bool dumpMode;
+
 int main(int argc, char **argv)
 {
     ExifData *ed;
@@ -77,9 +82,25 @@ int main(int argc, char **argv)
         return 1;
     }
 
+	while (1) {
+		switch (int opt = getopt(argc, argv, g_opts)) {
+		case '?':
+		case 'h':
+			// help;
+			return 0;
+
+		case 'd':
+			dumpMode = true;
+			continue;
+
+		case 'f':
+			fileName = optarg;
+			continue;
+		}
+		break;
+	}
     /* Load an ExifData object from an EXIF file */
-    ed = exif_data_new_from_file(argv[1]);
-    if (!ed) {
+    if (!(ed = exif_data_new_from_file(fileName))) {
         printf("File not readable or no EXIF data in file %s\n", argv[1]);
         return 2;
     }
