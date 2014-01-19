@@ -66,9 +66,10 @@ static void show_mnote_tag(ExifData *d, unsigned tag)
     }
 }
 
-static const char * g_opts = "h?f:d";
+static const char * g_opts = "h?f:dg";
 static char * fileName;
 static bool dumpMode;
+static bool genMode;
 
 int main(int argc, char **argv)
 {
@@ -93,8 +94,13 @@ int main(int argc, char **argv)
 			dumpMode = true;
 			continue;
 
+		case 'g':
+			genMode = true;
+			continue;
+
 		case 'f':
-			fileName = optarg;
+			fileName 
+				= optarg;
 			continue;
 		}
 		break;
