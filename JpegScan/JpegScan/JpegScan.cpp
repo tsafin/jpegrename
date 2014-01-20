@@ -99,37 +99,27 @@ int main(int argc, char **argv)
 			continue;
 
 		case 'f':
-			fileName 
-				= optarg;
+			fileName = optarg;
 			continue;
 		}
 		break;
 	}
-    /* Load an ExifData object from an EXIF file */
-    if (!(ed = exif_data_new_from_file(fileName))) {
-        printf("File not readable or no EXIF data in file %s\n", argv[1]);
-        return 2;
-    }
 
-#if 0
-	/* Show all the tags that might contain information about the
-     * photographer
-     */
-    show_tag(ed, EXIF_IFD_0, EXIF_TAG_ARTIST);
-    show_tag(ed, EXIF_IFD_0, EXIF_TAG_XP_AUTHOR);
-    show_tag(ed, EXIF_IFD_0, EXIF_TAG_COPYRIGHT);
+	if (dumpMode) {
+		/* Load an ExifData object from an EXIF file */
+		if (!(ed = exif_data_new_from_file(fileName))) {
+			printf("File not readable or no EXIF data in file %s\n", argv[1]);
+			return 2;
+		}
 
-    /* These are much less likely to be useful */
-    show_tag(ed, EXIF_IFD_EXIF, EXIF_TAG_USER_COMMENT);
-    show_tag(ed, EXIF_IFD_0, EXIF_TAG_IMAGE_DESCRIPTION);
-    show_tag(ed, EXIF_IFD_1, EXIF_TAG_IMAGE_DESCRIPTION);
+		exif_data_dump(ed);
 
-#else
-	exif_data_dump(ed);
-#endif
-
-    /* Free the EXIF data */
-    exif_data_unref(ed);
+		/* Free the EXIF data */
+		exif_data_unref(ed);
+	}
+	else if (genMode) {
+		// TODO
+	}
 
     return 0;
 }
