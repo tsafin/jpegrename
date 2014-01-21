@@ -12,7 +12,20 @@
 #include <vector>
 #include <array>
 #include <algorithm>
+#include <locale>
+#include <iomanip>
+#include <sstream>
+#include <ctime>
 #include "getopt.h"
+
+
+std::tm xlate_datetime(const std::string& s)
+{
+	std::tm t = {};
+	std::istringstream ss(s);
+	ss >> std::get_time(&t, "%Y:%m:%d %H:%M:%S");
+	return t;
+}
 
 /* Remove spaces on the right of the string */
 static void trim_spaces(char *buf)
@@ -48,34 +61,11 @@ static std::string get_tag_value(ExifData *d, ExifIfd ifd, ExifTag tag)
 /* Show the tag name and contents if the tag exists */
 static void show_tag(ExifData *d, ExifIfd ifd, ExifTag tag)
 {
-	std::string && buffer = get_tag_value(d, ifd, tag);
+	std::string&& buffer = get_tag_value(d, ifd, tag);
+
 	if (!buffer.empty()) {
-		printf("%s: %s\n", exif_tag_get_name_in_ifd(tag, ifd), &*buffer.begin());
-    }
-}
-
-/* Show the given MakerNote tag if it exists */
-static void show_mnote_tag(ExifData *d, unsigned tag)
-{
-    ExifMnoteData *mn = exif_data_get_mnote_data(d);
-    if (mn) {
-        int num = exif_mnote_data_count(mn);
-        int i;
-
-        /* Loop through all MakerNote tags, searching for the desired one */
-        for (i=0; i < num; ++i) {
-            char buf[1024];
-            if (exif_mnote_data_get_id(mn, i) == tag) {
-                if (exif_mnote_data_get_value(mn, i, buf, sizeof(buf))) {
-                    /* Don't bother printing it if it's entirely blank */
-                    trim_spaces(buf);
-                    if (*buf) {
-                        printf("%s: %s\n", exif_mnote_data_get_title(mn, i),
-                            buf);
-                    }
-                }
-            }
-        }
+		std::tm&& tt = xlate_datetime(buffer);
+		printf("%s: %s\n", exif_tag_get_name_in_ifd(tag, ifd), buffer.data());
     }
 }
 
