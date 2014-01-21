@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <libexif/exif-data.h>
+#include <vector>
 #include "getopt.h"
 
 /* Remove spaces on the right of the string */
@@ -22,22 +23,29 @@ static void trim_spaces(char *buf)
     *++s = 0; /* nul terminate the string on the first of the final spaces */
 }
 
-/* Show the tag name and contents if the tag exists */
-static void show_tag(ExifData *d, ExifIfd ifd, ExifTag tag)
+static std::vector<char> get_tag_value(ExifData *d, ExifIfd ifd, ExifTag tag) 
 {
+	std::vector<char> buffer;
     /* See if this tag exists */
     ExifEntry *entry = exif_content_get_entry(d->ifd[ifd],tag);
     if (entry) {
-        char buf[1024];
+		buffer.reserve(1024);
 
         /* Get the contents of the tag in human-readable form */
-        exif_entry_get_value(entry, buf, sizeof(buf));
+        exif_entry_get_value(entry, buffer.data(), buffer.capacity());
 
         /* Don't bother printing it if it's entirely blank */
-        trim_spaces(buf);
-        if (*buf) {
-            printf("%s: %s\n", exif_tag_get_name_in_ifd(tag,ifd), buf);
-        }
+		trim_spaces(buffer.data());
+	}
+	return buffer;
+}
+
+/* Show the tag name and contents if the tag exists */
+static void show_tag(ExifData *d, ExifIfd ifd, ExifTag tag)
+{
+	std::vector<char>&& buffer = get_tag_value(d, ifd, tag);
+	if (!buffer.empty()) {
+		printf("%s: %s\n", exif_tag_get_name_in_ifd(tag, ifd), &*buffer.begin());
     }
 }
 
@@ -71,6 +79,15 @@ static char * fileName;
 static bool dumpMode;
 static bool genMode;
 
+void process_datestamp_data (ExifData *data)
+{
+	show_tag(data, EXIF_IFD_0, EXIF_TAG_DATE_TIME_DIGITIZED);
+	show_tag(data, EXIF_IFD_0, EXIF_TAG_DATE_TIME);
+	show_tag(data, EXIF_IFD_0, EXIF_TAG_DATE_TIME_ORIGINAL);
+	show_tag(data, EXIF_IFD_GPS, (ExifTag)EXIF_TAG_GPS_DATE_STAMP);
+	show_tag(data, EXIF_IFD_GPS, (ExifTag)EXIF_TAG_GPS_TIME_STAMP);
+
+}
 int main(int argc, char **argv)
 {
     ExifData *ed;
@@ -105,21 +122,20 @@ int main(int argc, char **argv)
 		break;
 	}
 
+	/* Load an ExifData object from an EXIF file */
+	if (!(ed = exif_data_new_from_file(fileName))) {
+		printf("File not readable or no EXIF data in file %s\n", argv[1]);
+		return 2;
+	}
+
 	if (dumpMode) {
-		/* Load an ExifData object from an EXIF file */
-		if (!(ed = exif_data_new_from_file(fileName))) {
-			printf("File not readable or no EXIF data in file %s\n", argv[1]);
-			return 2;
-		}
-
 		exif_data_dump(ed);
-
-		/* Free the EXIF data */
-		exif_data_unref(ed);
 	}
 	else if (genMode) {
-		// TODO
+		process_datestamp_data(ed);
 	}
+	/* Free the EXIF data */
+	exif_data_unref(ed);
 
     return 0;
 }
