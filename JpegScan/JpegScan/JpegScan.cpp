@@ -10,6 +10,8 @@
 #include <string.h>
 #include <libexif/exif-data.h>
 #include <vector>
+#include <array>
+#include <algorithm>
 #include "getopt.h"
 
 /* Remove spaces on the right of the string */
@@ -23,27 +25,30 @@ static void trim_spaces(char *buf)
     *++s = 0; /* nul terminate the string on the first of the final spaces */
 }
 
-static std::vector<char> get_tag_value(ExifData *d, ExifIfd ifd, ExifTag tag) 
+static std::string get_tag_value(ExifData *d, ExifIfd ifd, ExifTag tag) 
 {
-	std::vector<char> buffer;
+	std::string s_temp;
     /* See if this tag exists */
     ExifEntry *entry = exif_content_get_entry(d->ifd[ifd],tag);
     if (entry) {
-		buffer.reserve(1024);
+		std::array<char, 1024> buffer;
 
         /* Get the contents of the tag in human-readable form */
-        exif_entry_get_value(entry, buffer.data(), buffer.capacity());
+		exif_entry_get_value(entry, buffer.data(), buffer.max_size());
 
         /* Don't bother printing it if it's entirely blank */
 		trim_spaces(buffer.data());
+		size_t len = strlen(buffer.data());
+		//std::copy_n(buffer.begin(), len, s_temp.begin());
+		s_temp = buffer.data();
 	}
-	return buffer;
+	return s_temp;
 }
 
 /* Show the tag name and contents if the tag exists */
 static void show_tag(ExifData *d, ExifIfd ifd, ExifTag tag)
 {
-	std::vector<char>&& buffer = get_tag_value(d, ifd, tag);
+	std::string && buffer = get_tag_value(d, ifd, tag);
 	if (!buffer.empty()) {
 		printf("%s: %s\n", exif_tag_get_name_in_ifd(tag, ifd), &*buffer.begin());
     }
