@@ -79,8 +79,8 @@ void process_datestamp_data (ExifData *data)
 	show_tag(data, EXIF_IFD_0, EXIF_TAG_DATE_TIME_DIGITIZED);
 	show_tag(data, EXIF_IFD_0, EXIF_TAG_DATE_TIME);
 	show_tag(data, EXIF_IFD_0, EXIF_TAG_DATE_TIME_ORIGINAL);
-	show_tag(data, EXIF_IFD_GPS, (ExifTag)EXIF_TAG_GPS_DATE_STAMP);
-	show_tag(data, EXIF_IFD_GPS, (ExifTag)EXIF_TAG_GPS_TIME_STAMP);
+//	show_tag(data, EXIF_IFD_GPS, (ExifTag)EXIF_TAG_GPS_DATE_STAMP);
+//	show_tag(data, EXIF_IFD_GPS, (ExifTag)EXIF_TAG_GPS_TIME_STAMP);
 
 }
 int main(int argc, char **argv)
@@ -95,8 +95,9 @@ int main(int argc, char **argv)
         return 1;
     }
 
-	while (1) {
-		switch (int opt = getopt(argc, argv, g_opts)) {
+	int opt;
+	while (-1 != (opt = getopt(argc, argv, g_opts))) {
+		switch (opt) {
 		case '?':
 		case 'h':
 			// help;
@@ -117,20 +118,25 @@ int main(int argc, char **argv)
 		break;
 	}
 
-	/* Load an ExifData object from an EXIF file */
-	if (!(ed = exif_data_new_from_file(fileName))) {
-		printf("File not readable or no EXIF data in file %s\n", argv[1]);
-		return 2;
-	}
+	do 
+	{
+		/* Load an ExifData object from an EXIF file */
+		if (!(ed = exif_data_new_from_file(fileName))) {
+			printf("File not readable or no EXIF data in file %s\n", fileName);
+			return 2;
+		}
 
-	if (dumpMode) {
-		exif_data_dump(ed);
-	}
-	else if (genMode) {
-		process_datestamp_data(ed);
-	}
-	/* Free the EXIF data */
-	exif_data_unref(ed);
+		if (dumpMode) {
+			exif_data_dump(ed);
+		}
+		else if (genMode) {
+			process_datestamp_data(ed);
+		}
+		/* Free the EXIF data */
+		exif_data_unref(ed);
 
+		fileName = argv[++optind]; // process next free arguument in the command-line (wildcard expansion most-probably)
+
+	} while (optind < argc);
     return 0;
 }
