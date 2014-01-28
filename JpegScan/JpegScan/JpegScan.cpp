@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <assert.h>
+#include <io.h>
+
 #include <libexif/exif-data.h>
+
 #include <vector>
 #include <array>
 #include <algorithm>
@@ -9,6 +12,7 @@
 #include <iomanip>
 #include <sstream>
 #include <ctime>
+
 #include "getopt.h"
 
 const char * fileNamePattern = "%04d-%02d-%02d";
@@ -69,10 +73,28 @@ static void show_tag(ExifData *d, ExifIfd ifd, ExifTag tag)
     }
 }
 
+static char noexifSubdir[] = "_notimeinfo_";
+
 static const char * g_opts = "h?f:dg";
 static char * fileName;
 static bool dumpMode;
 static bool genMode;
+
+static void move_file(const char * fileName, const char* transName)
+{
+	printf("mkdir %s > NUL && move %s %s\\ \n", transName, fileName, transName);
+}
+
+static void move_nodate_file(const char *fileName, const char *defaultDir = noexifSubdir)
+{
+	// don't certain yet what to do with no exif date files
+	printf("echo no time info for file %s \n", fileName);
+}
+
+static void not_existing_file(const char * fileName)
+{
+	printf("echo not existing file %s \n", fileName);
+}
 
 void process_datestamp_data (const char * fileName, ExifData *data)
 {
@@ -90,10 +112,8 @@ void process_datestamp_data (const char * fileName, ExifData *data)
 		tag_string = get_tag_value(data, EXIF_IFD_0, EXIF_TAG_DATE_TIME_ORIGINAL);
 	assert(!tag_string.empty());
 	
-	std::tm&& file_tm = xlate_datetime(tag_string);
-	std::string&& date_string = format_path_tm(file_tm);
-
-	printf("File %s: translated = %s\n", fileName, date_string.c_str());
+	std::tm&& xlate_tm = xlate_datetime(tag_string);
+	move_file(fileName, format_path_tm(xlate_tm).c_str());
 }
 
 int main(int argc, char **argv)
@@ -132,22 +152,28 @@ int main(int argc, char **argv)
 
 	do 
 	{
+		if (-1 == _access(fileName, 0)) {
+			not_existing_file(fileName);
+			goto next_file;
+		}
 		/* Load an ExifData object from an EXIF file */
 		if (!(ed = exif_data_new_from_file(fileName))) {
-			printf("File not readable or no EXIF data in file %s\n", fileName);
-			return 2;
-		}
+			//printf("File not readable or no EXIF data in file %s\n", fileName);
+			move_nodate_file(fileName);
+			goto next_file;
+		} 
 
 		if (dumpMode) {
 			exif_data_dump(ed);
-		}
-		else if (genMode) {
+		} else if (genMode) {
 			process_datestamp_data(fileName, ed);
 		}
 		/* Free the EXIF data */
 		exif_data_unref(ed);
 
-		fileName = argv[optind++]; // process next free arguument in the command-line (wildcard expansion most-probably)
+
+	next_file:
+		fileName = argv[optind++]; // process next free argument in the command-line (wildcard expansion most-probably)
 
 	} while (optind <= argc);
     return 0;
